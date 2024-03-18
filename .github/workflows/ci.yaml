@@ -287,14 +287,14 @@ jobs:
         run: |
           declare -a FLAVORS=(
             base
-            jax
-            triton
-            maxtext
-            levanter
-            upstream-t5x
-            upstream-pax
-            t5x
-            pax
+            # jax
+            # triton
+            # maxtext
+            # levanter
+            # upstream-t5x
+            # upstream-pax
+            # t5x
+            # pax
           )
           declare -a STAGES=(
             mealkit
