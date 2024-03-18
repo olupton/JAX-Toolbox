@@ -98,7 +98,7 @@ jobs:
           # Get the Docker tag that we are going to lookup the package ID from,
           # and use in the generated URL. At the moment the two tags are just
           # X and X-YYYY-MM-DD, so taking the longest one makes sense.
-          docker_tag=$(printf '%s\n' ${{ steps.meta.outputs.tags }} | sort | tail -n 1)
+          docker_tag=$(echo "${{ steps.meta.outputs.tags }}" | sort | tail -n 1)
           # TODO: do we need a delay or re-try loop in order for the package
           # to be available?
           # URL like https://github.com/NVIDIA/JAX-Toolbox/pkgs/container/jax/12
@@ -109,6 +109,7 @@ jobs:
               "https://api.github.com/orgs/NVIDIA/packages/container/${{ inputs.TARGET_IMAGE }}/versions" \
             | jq -r ".[] | select(.metadata.container.tags[] == \"${docker_tag}\").html_url")
           echo "package_url=${package_url}?tag=${docker_tag}" >> $GITHB_OUTPUT
+          echo "Got package URL: ${package_url}?tag=${docker_tag}"
 
       # - name: Create single-arch images
       #   if: ${{ inputs.EXPOSE_SINGLE_ARCH_IMAGES }}
