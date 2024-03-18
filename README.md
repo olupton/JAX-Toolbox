@@ -1,6 +1,6 @@
 # JAX Toolbox
 
-![Test](endpoint.svg) #https://gist.githubusercontent.com/olupton/318ee396b6e609ad46b1bb2b999119d7/raw/f4de69e2227e08d732b551c0d3d8804e33fe2c94/endpoint.svg)
+![https://gist.github.com/olupton/318ee396b6e609ad46b1bb2b999119d7#file-jax-2024-03-18-md](https://gist.githubusercontent.com/olupton/318ee396b6e609ad46b1bb2b999119d7/raw/f4de69e2227e08d732b551c0d3d8804e33fe2c94/endpoint.svg)
 <table>
   <thead>
     <tr>
