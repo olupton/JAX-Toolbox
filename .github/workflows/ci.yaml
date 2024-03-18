@@ -375,7 +375,7 @@ jobs:
         type=raw,value=${{ matrix.config.flavor }}-${{ needs.metadata.outputs.BUILD_DATE }},priority=${{ matrix.config.priority }}
 
   finalize:
-    needs: [metadata, amd64, arm64]
+    needs: [metadata, amd64, arm64, publish-containers]
     if: "!cancelled()"
     uses: ./.github/workflows/_finalize.yaml
     with:
