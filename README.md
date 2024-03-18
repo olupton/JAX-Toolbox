@@ -25,7 +25,7 @@
       </td>
       <td></td>
       <td>
-        <object data="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Folupton%2F318ee396b6e609ad46b1bb2b999119d7%2Fraw%2F38568611178e30e491119c385b3940ba31f0e164%2Fbadge-base-build-amd64.json&logo=docker&label=amd64">
+        <object data="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Folupton%2F318ee396b6e609ad46b1bb2b999119d7%2Fraw%2Fd77f4ae181af6ad3e64c065a0dd30978f160844a%2Fbadge-base-build-amd64.json&logo=docker&label=amd64">
         <img style="height:1em;" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fnvjax%2F913c2af68649fe568e9711c2dabb23ae%2Fraw%2Fbadge-base-build-arm64.json&logo=docker&label=arm64">
       </td>
       <td></td>
