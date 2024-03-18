@@ -19,6 +19,9 @@ on:
       DOCKER_TAGS:
         description: "Tags of the image published"
         value: ${{ jobs.publish.outputs.DOCKER_TAGS }}
+      PACKAGE_URL:
+        description: "Direct link to the GitHub package page for this image"
+        value: ${{ jobs.publish.outputs.PACKAGE_URL }}
 
 env:
   DOCKER_REGISTRY: 'ghcr.io/nvidia'
@@ -28,6 +31,7 @@ jobs:
     runs-on: ubuntu-22.04
     outputs:
       DOCKER_TAGS: ${{ steps.meta.outputs.tags }}
+      PACKAGE_URL: ${{ steps.github-meta.package_url }}
     steps:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -86,6 +90,25 @@ jobs:
           for tag in $(echo -e "${{ steps.meta.outputs.tags }}"); do
             docker buildx imagetools create --tag $tag ${{ steps.get-manifests.outputs.manifests }}
           done
+
+      - name: Get GitHub package URL
+        id: github-meta
+        shell: bash -x -e {0}
+        run: |
+          # Get the Docker tag that we are going to lookup the package ID from,
+          # and use in the generated URL. At the moment the two tags are just
+          # X and X-YYYY-MM-DD, so taking the longest one makes sense.
+          docker_tag=$(printf '%s\n' ${{ steps.meta.outputs.tags }} | sort | tail -n 1)
+          # TODO: do we need a delay or re-try loop in order for the package
+          # to be available?
+          # URL like https://github.com/NVIDIA/JAX-Toolbox/pkgs/container/jax/12
+          package_url=$(curl \
+              -H "Authorization: token ${{ github.token }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/orgs/NVIDIA/packages/container/${{ inputs.TARGET_IMAGE }}/versions" \
+            | jq -r ".[] | select(.metadata.container.tags[] == \"${docker_tag}\").html_url")
+          echo "package_url=${package_url}?tag=${docker_tag}" >> $GITHB_OUTPUT
 
       # - name: Create single-arch images
       #   if: ${{ inputs.EXPOSE_SINGLE_ARCH_IMAGES }}
