@@ -1,6 +1,6 @@
 # JAX Toolbox
 
-![https://gist.github.com/olupton/318ee396b6e609ad46b1bb2b999119d7#file-jax-2024-03-18-md](https://gist.githubusercontent.com/olupton/318ee396b6e609ad46b1bb2b999119d7/raw/f4de69e2227e08d732b551c0d3d8804e33fe2c94/endpoint.svg)
+[![test](https://gist.githubusercontent.com/olupton/318ee396b6e609ad46b1bb2b999119d7/raw/f4de69e2227e08d732b551c0d3d8804e33fe2c94/endpoint.svg)]([link](https://gist.github.com/olupton/318ee396b6e609ad46b1bb2b999119d7#file-jax-2024-03-18-md))
 <table>
   <thead>
     <tr>
@@ -26,11 +26,6 @@
       </td>
       <td></td>
       <td>
-
-
-        
-
-
         <img style="height:1em;" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fnvjax%2F913c2af68649fe568e9711c2dabb23ae%2Fraw%2Fbadge-base-build-arm64.json&logo=docker&label=arm64">
       </td>
       <td></td>
