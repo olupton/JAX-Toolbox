@@ -24,7 +24,7 @@ on:
         value: ${{ jobs.publish.outputs.PACKAGE_URL }}
 
 env:
-  DOCKER_REGISTRY: 'ghcr.io/nvidia'
+  DOCKER_REGISTRY: 'ghcr.io/olupton'
 
 jobs:
   publish:

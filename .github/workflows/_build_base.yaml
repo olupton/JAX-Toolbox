@@ -48,7 +48,7 @@ on:
         value: ${{ jobs.build-base.outputs.DOCKER_TAG }}
 
 env:
-  UPLD_IMAGE: ghcr.io/nvidia/jax-toolbox-internal
+  UPLD_IMAGE: ghcr.io/olupton/jax-toolbox-internal
 
 permissions:
   contents: read  # to fetch code
