@@ -75,28 +75,28 @@ RUN pip install --upgrade --no-cache-dir -e /opt/pip pip-tools && rm -rf ~/.cach
 ## Install the latest versions of Nsight Systems and Nsight Compute
 ###############################################################################
 ADD install-nsight.sh /usr/local/bin
-RUN install-nsight.sh
+#RUN install-nsight.sh
 
 ###############################################################################
 ## Install cuDNN
 ###############################################################################
 
 ADD install-cudnn.sh /usr/local/bin
-RUN install-cudnn.sh
+#RUN install-cudnn.sh
 
 ###############################################################################
 ## Install NCCL
 ###############################################################################
 
 ADD install-nccl.sh /usr/local/bin
-RUN install-nccl.sh
+#RUN install-nccl.sh
 
 ###############################################################################
 ## RoCE and InfiniteBand support
 ###############################################################################
 
 ADD install-ofed.sh /usr/local/bin
-RUN install-ofed.sh
+#RUN install-ofed.sh
 
 ##############################################################################
 ## Amazon EFA support (need to run it inside container separately)
