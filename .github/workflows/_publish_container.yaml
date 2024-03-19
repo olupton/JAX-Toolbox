@@ -3,6 +3,14 @@ name: ~publish images from internal to public repo
 on:
   workflow_call:
     inputs:
+      ARTIFACT_NAME:
+        type: string
+        description: 'Artifact name; the markdown filename is derived from this'
+        required: true
+      ARTIFACT_TAG:
+        type: string
+        description: 'Container tag used to find the GitHub package ID and embedded in links'
+        required: true
       SOURCE_IMAGE:
         type: string
         description: 'Source docker image:'
@@ -95,35 +103,27 @@ jobs:
         id: github-meta
         shell: bash -x -e {0}
         run: |
-          # Get the Docker tag that we are going to lookup the package ID from,
-          # and use in the generated URL. At the moment the two tags are just
-          # X and X-YYYY-MM-DD, so taking the longest one makes sense.
-          longest_cont=$(echo "${{ steps.meta.outputs.tags }}" | sort | tail -n 1)
-          docker_tag=$(echo "${longest_cont}" | cut -d : -f 2)
+          # Note that /users/ seems to work for both user and organization
+          # owners, while /orgs/ only works for owners that are organizations.
           # TODO: do we need a delay or re-try loop in order for the package
           # to be available?
-          # URL like https://github.com/NVIDIA/JAX-Toolbox/pkgs/container/jax/12
-          # TODO: revert users -> orgs
           package_url=$(curl \
               -H "Authorization: token ${{ github.token }}" \
               -H "Accept: application/vnd.github.v3+json" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               "https://api.github.com/users/${{ github.repository_owner }}/packages/container/${{ inputs.TARGET_IMAGE }}/versions" \
-            | jq -r ".[] | select(.metadata.container.tags[] == \"${docker_tag}\").html_url")
-          echo "docker_tag=${docker_tag}" >> $GITHUB_OUTPUT
-          echo "package_url=${package_url}?tag=${docker_tag}" >> $GITHUB_OUTPUT
-          # base, jax, ...
-          docker_tag_prefix=$(echo ${docker_tag} | cut -d - -f 1)
-          markdown_file="${docker_tag_prefix}.md"
-          echo "[${longest_cont}](${package_url}?tag=${docker_tag})" > "${markdown_file}"
-          echo "markdown_file=${markdown_file}" >> $GITHUB_OUTPUT
+            | jq -r ".[] | select(.metadata.container.tags[] == \"${{ inputs.ARTIFACT_TAG }}\").html_url")
+          # Got ~ https://github.com/NVIDIA/JAX-Toolbox/pkgs/container/jax/12
+          package_url="${package_url}?tag=${{ inputs.ARTIFACT_TAG }}"
+          echo "package_url=${package_url}" >> $GITHUB_OUTPUT
+          echo "[${{ env.DOCKER_REGISTRY }}/${{ inputs.TARGET_IMAGE }}:${{ inputs.ARTIFACT_TAG }}](${package_url})" > "${{ inputs.ARTIFACT_NAME }}.md"
 
       - name: Upload link file
         if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.TARGET_IMAGE }}-${{ steps.github-meta.outputs.docker-tag }}
-          path: ${{ steps.github-meta.outputs.markdown_file }}
+          name: ${{ inputs.ARTIFACT_NAME }}
+          path: ${{ inputs.ARTIFACT_NAME }}.md
 
       # - name: Create single-arch images
       #   if: ${{ inputs.EXPOSE_SINGLE_ARCH_IMAGES }}
