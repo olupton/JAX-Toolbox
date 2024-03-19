@@ -62,7 +62,7 @@ jobs:
     env:
       # Name/bash regex for shields.io endpoint JSON files
       BADGE_FILES: '*badge*.json'
-      LINK_FILES: '*.md'
+      MARKDOWN_FILES: '*.md'
     outputs:
       GIST_ID: ${{ steps.extract-id.outputs.GIST_ID }}
     steps:
@@ -74,7 +74,7 @@ jobs:
         shell: bash -x -e {0}
         run: |
           workdir=$(mktemp -d)
-          find -name "${BADGE_FILES}" "${LINK_FILES}" | while read -s f; do
+          find -name "${BADGE_FILES}" -or -name "${MARKDOWN_FILES}" | while read -s f; do
             cp "$f" $workdir
           done
           echo "WORKDIR=$workdir" >> $GITHUB_OUTPUT
