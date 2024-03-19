@@ -110,7 +110,7 @@ jobs:
               "https://api.github.com/orgs/NVIDIA/packages/container/${{ inputs.TARGET_IMAGE }}/versions" \
             | jq -r ".[] | select(.metadata.container.tags[] == \"${docker_tag}\").html_url")
           echo "docker_tag=${docker_tag}" >> $GITHUB_OUTPUT
-          echo "package_url=${package_url}?tag=${docker_tag}" >> $GITHB_OUTPUT
+          echo "package_url=${package_url}?tag=${docker_tag}" >> $GITHUB_OUTPUT
           # base, jax, ...
           docker_tag_prefix=$(echo ${docker_tag} | cut -d - -f 1)
           markdown_file="${docker_tag_prefix}.md"
