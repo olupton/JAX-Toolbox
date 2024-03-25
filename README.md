@@ -28,7 +28,7 @@
         <code>ghcr.io/nvidia/jax:base</code>
       </td>
       <td>
-        [<img style="height:1em;" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fnvjax%2F913c2af68649fe568e9711c2dabb23ae%2Fraw%2Fbadge-base-build-amd64.json&logo=docker&label=amd64">](https://gist.github.com/nvjax/913c2af68649fe568e9711c2dabb23ae/#file-final-base-md)
+        [<img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fnvjax%2F913c2af68649fe568e9711c2dabb23ae%2Fraw%2Fbadge-base-build-amd64.json&logo=docker&label=amd64">](https://gist.github.com/nvjax/913c2af68649fe568e9711c2dabb23ae/#file-final-base-md)
         [<img style="height:1em;" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fnvjax%2F913c2af68649fe568e9711c2dabb23ae%2Fraw%2Fbadge-base-build-arm64.json&logo=docker&label=arm64">](https://gist.github.com/nvjax/913c2af68649fe568e9711c2dabb23ae/#file-final-base-md)
       </td>
       <td></td>
