@@ -26,8 +26,9 @@ if [[ ! -d "${VIRTUALENV}" ]]; then
 else
   echo "Virtual environment already exists, not installing anything..."
 fi
-echo "Launching: cd ${SCRIPT_DIR} && ${VIRTUALENV}/bin/python -m jupyterlab Analysis.ipynb"
-if
 if [ -z ${NSYS_JAX_INSTALL_SKIP_LAUNCH+x} ]; then
+  echo "Launching: cd ${SCRIPT_DIR} && ${VIRTUALENV}/bin/python -m jupyterlab Analysis.ipynb"
   cd "${SCRIPT_DIR}" && "${VIRTUALENV}/bin/python" -m jupyterlab Analysis.ipynb
+else
+  echo "Skipping launch of jupyterlab due to NSYS_JAX_INSTALL_SKIP_LAUNCH"
 fi
