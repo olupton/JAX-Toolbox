@@ -18,7 +18,8 @@ if [[ ! -d "${VIRTUALENV}" ]]; then
   . "${VIRTUALENV}/bin/activate"
   python -m pip install -U pip
   "${SCRIPT_DIR}/nsys-jax-ensure-protobuf"
-  python -m pip install jupyterlab
+  # matplotlib is a dependency of Analysis.ipynb but not jax_nsys
+  python -m pip install jupyterlab matplotlib
   python -m pip install -e "${SCRIPT_DIR}/python/jax_nsys"
   curl -o "${VIRTUALENV}/bin/flamegraph.pl" https://raw.githubusercontent.com/brendangregg/FlameGraph/master/flamegraph.pl
   chmod 755 "${VIRTUALENV}/bin/flamegraph.pl"
