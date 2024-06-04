@@ -1,0 +1,15 @@
+{
+    "RecipeJsonVersion": "1.2.0",
+    "RecipeRuntimeVersion": "2.0.0",
+    "RecipeName": "nvtx_gpu_proj_trace",
+    "DisplayName": "NVTX GPU Projection Trace",
+    "Mode": "concurrent",
+    "StartTime": "2024-06-04 10:26:36.427850",
+    "EndTime": "2024-06-04 10:26:40.716970",
+    "InputFiles": [
+        "/tmp/tmpmkdgxfvc/report.nsys-rep"
+    ],
+    "Outputs": {
+        "trace.ipynb": "Notebook"
+    }
+}

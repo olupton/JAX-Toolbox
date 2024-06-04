@@ -27,4 +27,7 @@ else
   echo "Virtual environment already exists, not installing anything..."
 fi
 echo "Launching: cd ${SCRIPT_DIR} && ${VIRTUALENV}/bin/python -m jupyterlab Analysis.ipynb"
-cd "${SCRIPT_DIR}" && "${VIRTUALENV}/bin/python" -m jupyterlab Analysis.ipynb
+if
+if [ -z ${NSYS_JAX_INSTALL_SKIP_LAUNCH+x} ]; then
+  cd "${SCRIPT_DIR}" && "${VIRTUALENV}/bin/python" -m jupyterlab Analysis.ipynb
+fi
