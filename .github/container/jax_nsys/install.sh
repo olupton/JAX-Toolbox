@@ -10,6 +10,7 @@
 # The expectation is that those archives will be copied and extracted on a
 # laptop or workstation, and this installation script will be run there, while
 # the `nsys-jax` wrapper is executed on a remote GPU cluster.
+set -ex
 SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 VIRTUALENV="${SCRIPT_DIR}/nsys_jax_venv"
 if [[ ! -d "${VIRTUALENV}" ]]; then
