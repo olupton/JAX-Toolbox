@@ -80,7 +80,7 @@ jobs:
         shell: bash -x -e {0}
         run: |
           # Get the actual test data from a real archive, minus the .nsys-rep file
-          mv .github/workflows/nsys-jax/maxtext_fsdp4_test_data/* .github/container/jax_nsys/
+          unzip -d .github/container/jax_nsys/ .github/workflows/nsys-jax/maxtext_fsdp4_test_data.zip
       - name: "Setup Python 3.10"
         uses: actions/setup-python@v5
         with:
